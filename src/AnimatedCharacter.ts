@@ -67,22 +67,29 @@ export class AnimatedCharacter extends gfx.Transform3
     private createMeshesRecursive(bone: Bone): void
     {
         // TO DO (PART 1): Draw the coordinate axes for the bone
-
+        const axes = new gfx.Axes3(0.15);
+        bone.transform.add(axes);
 
         // TO DO (PART 3): You will want to draw something different for each
         // part of the body. An if statement like this is an easy way
         // to do that.  You can find the names of additional bones in 
         // the .asf files.  Anything that you create will be automatically
         // be made invisible when the coordinate axes are visibile.
-        // if(bone.name == 'head')
-        // {
-        // }
-        // else if(bone.name == 'upperback')
-        // {
-        // }
+        if(bone.name == 'head')
+        {
+            const sphere = new gfx.SphereMesh();
+            sphere.translateY(bone.length);
+            this.add(sphere);
+        }
+        //else if(bone.name == 'upperback')
+        //{
+        //}
 
 
         // TO DO (PART 1): Recursively call this function for each of the bone's children
+        bone.children.forEach((childBone: Bone) => {
+            this.createMeshesRecursive(childBone);
+        });
     }
 
     loadSkeleton(filename: string): void
