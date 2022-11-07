@@ -140,7 +140,10 @@ export class DanceApp extends gfx.GfxApp
         // You can pick your own motions from the CMU mocap database
         // or you can use the same dance moves that we did.  
         // We used: 05_10.amc, 05_09.amc, 05_20.amc, and 05_06.amc
-
+        this.balletDanceMotions.push(this.balletAnt.loadMotionClip('./assets/data/05_12.amc'));
+        this.balletDanceMotions.push(this.balletAnt.loadMotionClip('./assets/data/61_15.amc'));
+        this.balletDanceMotions.push(this.balletAnt.loadMotionClip('./assets/data/61_01.amc'));
+        this.balletDanceMotions.push(this.balletAnt.loadMotionClip('./assets/data/60_15.amc'));
     }
 
     startAnimations(): void
@@ -245,21 +248,29 @@ export class DanceApp extends gfx.GfxApp
     playBalletMotion2(): void
     {
         // TO DO (PART 4): Overlay the motion, similar to the call above
-    }
+        this.balletAnt.overlay(this.balletDanceMotions[1], 100);
+    console.log('Queueing ballet motion 1. Queue size is ' + this.balletAnt.getQueueCount() + '.');
+    }   
 
     playBalletMotion3(): void
     {
         // TO DO (PART 4): Overlay the motion, similar to the call above
+        this.balletAnt.overlay(this.balletDanceMotions[2], 100);
+    console.log('Queueing ballet motion 1. Queue size is ' + this.balletAnt.getQueueCount() + '.');
     }
 
     playBalletMotion4(): void
     {
         // TO DO (PART 4): Overlay the motion, similar to the call above
+        this.balletAnt.overlay(this.balletDanceMotions[3], 100);
+    console.log('Queueing ballet motion 1. Queue size is ' + this.balletAnt.getQueueCount() + '.');
     }
 
     playBalletMotion5(): void
     {
         // TO DO (PART 4): Overlay the motion, similar to the call above
+        this.balletAnt.overlay(this.balletDanceMotions[4], 100);
+    console.log('Queueing ballet motion 1. Queue size is ' + this.balletAnt.getQueueCount() + '.');
     }
 
 }
