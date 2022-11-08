@@ -79,219 +79,305 @@ export class AnimatedCharacter extends gfx.Transform3
         {
             const head = new gfx.SphereMesh(0.15);
             head.scale.set(1, 1.5, 1);
-            head.translateY(bone.length*8);
             head.material.setColor(new gfx.Color(1, 0, 0));
-            this.skeleton.add(head);
+            head.translateY(bone.length);
+            bone.transform.add(head);
 
             const antennaLeft = new gfx.CylinderMesh(20, 0.75);
-            antennaLeft.translateY(bone.length*10);
+            antennaLeft.translateY(bone.length*3);
             antennaLeft.translateX(-bone.length/1.5);
             antennaLeft.scale.set(0.01, 0.5, 0.01);
             antennaLeft.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(antennaLeft);
+            bone.transform.add(antennaLeft);
 
             const antennaRight = new gfx.CylinderMesh(20, 0.75);
-            antennaRight.translateY(bone.length*10);
+            antennaRight.translateY(bone.length*3);
             antennaRight.translateX(bone.length/1.5);
             antennaRight.scale.set(0.01, 0.5, 0.01);
             antennaRight.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(antennaRight);
+            bone.transform.add(antennaRight);
 
             const antennaLeftBend = new gfx.CylinderMesh(20, 0.25);
-            antennaLeftBend.translateY(bone.length*11.75);
+            antennaLeftBend.translateY(bone.length*5);
             antennaLeftBend.translateX(-bone.length/1.5);
             antennaLeftBend.translateZ(bone.length/2);
             antennaLeftBend.rotateX(90);
             antennaLeftBend.scale.set(0.01, 0.5, 0.01);
             antennaLeftBend.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(antennaLeftBend);
+            bone.transform.add(antennaLeftBend);
 
             const antennaRightBend = new gfx.CylinderMesh(20, 0.25);
-            antennaRightBend.translateY(bone.length*11.75);
+            antennaRightBend.translateY(bone.length*5);
             antennaRightBend.translateX(bone.length/1.5);
             antennaRightBend.translateZ(bone.length/2);
             antennaRightBend.rotateX(90);
             antennaRightBend.scale.set(0.01, 0.5, 0.01);
             antennaRightBend.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(antennaRightBend);
+            bone.transform.add(antennaRightBend);
 
             const eyeLeft = new gfx.SphereMesh(0.1);
             eyeLeft.scale.set(0.5, 0.5, 0.5);
-            eyeLeft.translateY(bone.length*8.5);
+            eyeLeft.translateY(bone.length);
             eyeLeft.translateX(-bone.length/1.5);
             eyeLeft.translateZ(bone.length);
             eyeLeft.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(eyeLeft);
+            bone.transform.add(eyeLeft);
 
             const eyeRight = new gfx.SphereMesh(0.1);
             eyeRight.scale.set(0.5, 0.5, 0.5);
-            eyeRight.translateY(bone.length*8.5);
+            eyeRight.translateY(bone.length);
             eyeRight.translateX(bone.length/1.5);
             eyeRight.translateZ(bone.length);
             eyeRight.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(eyeRight);
+            bone.transform.add(eyeRight);
         }
         else if(bone.name == 'upperneck')
         {
-            const upperneck = new gfx.CylinderMesh(20, 0.25);
-            upperneck.translateY(bone.length*6);
-            upperneck.rotateY(-45);
-            upperneck.scale.set(0.02, 0.75, 0.02);
+            const upperneck = new gfx.CylinderMesh(20, bone.length);
+            upperneck.rotateY(45);
+            upperneck.translateY(-bone.length);
+            upperneck.scale.set(0.02, 1, 0.02);
             upperneck.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(upperneck);
+            bone.transform.add(upperneck);
         }
         else if(bone.name == 'lowerneck')
         {
-            const lowerneck = new gfx.CylinderMesh(20, 0.25);
-            lowerneck.translateY(bone.length*5.5);
-            lowerneck.rotateY(-45);
-            lowerneck.scale.set(0.02, 0.75, 0.02);
+            const lowerneck = new gfx.CylinderMesh(20, bone.length);
+            lowerneck.rotateY(45);
+            lowerneck.translateY(-bone.length);
+            lowerneck.scale.set(0.02, 1, 0.02);
             lowerneck.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(lowerneck);
+            bone.transform.add(lowerneck);
         }
         else if(bone.name == 'thorax')
         {
-            const thorax = new gfx.SphereMesh(0.15);
-            thorax.translateY(bone.length*3);
+            const thorax = new gfx.SphereMesh(bone.length);
             thorax.material.setColor(new gfx.Color(1, 0, 0));
-            this.skeleton.add(thorax);
+            thorax.translateZ(bone.length/2);
+            bone.transform.add(thorax);
         }
         else if(bone.name == 'lclavicle')
         {
-            //
+            const lclavicle = new gfx.CylinderMesh(20, bone.length);
+            lclavicle.scale.set(0.02, 1, 0.02);
+            lclavicle.material.setColor(new gfx.Color(0, 0, 0));
+            lclavicle.rotateZ(90);
+            bone.transform.add(lclavicle);
         }
         else if(bone.name == 'lhumerus')
         {
-            //
+            const lhumerus = new gfx.CylinderMesh(20, bone.length);
+            lhumerus.scale.set(0.02, 1, 0.02);
+            lhumerus.translateX(-bone.length/2);
+            lhumerus.rotateZ(-90);
+            lhumerus.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(lhumerus);
         }
         else if(bone.name == 'lradius')
         {
-            //
+            const lradius = new gfx.CylinderMesh(20, bone.length);
+            lradius.scale.set(0.02, 1, 0.02);
+            lradius.translateX(-bone.length/2);
+            lradius.rotateZ(90);
+            lradius.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(lradius);
         }
         else if(bone.name == 'lwrist')
         {
-            //
+            const lwrist = new gfx.CylinderMesh(20, bone.length);
+            lwrist.scale.set(0.02, 1, 0.02);
+            lwrist.translateX(-bone.length/2);
+            lwrist.rotateZ(-90);
+            lwrist.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(lwrist);
         }
         else if(bone.name == 'lhand')
         {
-            //
+            const lhand = new gfx.CylinderMesh(20, bone.length);
+            lhand.scale.set(0.02, 1, 0.02);
+            lhand.translateX(-bone.length/2);
+            lhand.rotateZ(-90);
+            lhand.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(lhand);
         }
         else if(bone.name == 'lthumb')
         {
-            //
+            const lthumb = new gfx.CylinderMesh(20, bone.length);
+            lthumb.scale.set(0.02, 1, 0.02);
+            lthumb.translateX(-bone.length/2);
+            lthumb.rotateZ(-90);
+            lthumb.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(lthumb);
         }
         else if(bone.name == 'rclavicle')
         {
-            //
+            const rclavicle = new gfx.CylinderMesh(20, bone.length);
+            rclavicle.scale.set(0.02, 0.75, 0.02);
+            rclavicle.material.setColor(new gfx.Color(0, 0, 0));
+            rclavicle.rotateZ(-90);
+            bone.transform.add(rclavicle);
         }
         else if(bone.name == 'rhumerus')
         {
-            //
+            const rhumerus = new gfx.CylinderMesh(20, bone.length);
+            rhumerus.scale.set(0.02, 1, 0.02);
+            rhumerus.translateX(bone.length/2);
+            rhumerus.translateY(bone.length/2);
+            rhumerus.rotateZ(-90);
+            rhumerus.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(rhumerus);
         }
         else if(bone.name == 'rradius')
         {
-            //
+            const rradius = new gfx.CylinderMesh(20, bone.length);
+            rradius.scale.set(0.02, 1, 0.02);
+            rradius.translateX(bone.length/4);
+            rradius.translateY(bone.length);
+            rradius.rotateZ(-90);
+            rradius.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(rradius);
         }
         else if(bone.name == 'rwrist')
         {
-            //
+            const rwrist = new gfx.CylinderMesh(20, bone.length);
+            rwrist.scale.set(0.02, 1, 0.02);
+            rwrist.translateX(bone.length/4);
+            rwrist.translateY(bone.length*2);
+            rwrist.rotateZ(-90);
+            rwrist.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(rwrist);
         }
         else if(bone.name == 'rthumb')
         {
-            //
+            const rthumb = new gfx.CylinderMesh(20, bone.length);
+            rthumb.scale.set(0.02, 1, 0.02);
+            rthumb.translateX(bone.length/2);
+            rthumb.translateY(bone.length*2);
+            rthumb.rotateZ(-90);
+            rthumb.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(rthumb);
         }
         else if(bone.name == 'rhand')
         {
-            //
+            const rhand = new gfx.CylinderMesh(20, bone.length);
+            rhand.scale.set(0.02, 1, 0.02);
+            rhand.translateX(bone.length/2);
+            rhand.translateY(bone.length*2);
+            rhand.rotateZ(-90);
+            rhand.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(rhand);
         }
         else if(bone.name == 'upperback')
         {
-            const upperback = new gfx.SphereMesh(0.15);
-            upperback.translateY(bone.length);
+            const upperback = new gfx.SphereMesh(bone.length);
             upperback.material.setColor(new gfx.Color(1, 0, 0));
-            this.skeleton.add(upperback);
+            upperback.translateY(-bone.length/2);
+            upperback.translateZ(bone.length);
+            bone.transform.add(upperback);
         }
         else if(bone.name == 'lowerback')
         {
-            const lowerback = new gfx.SphereMesh(0.15);
-            lowerback.translateY(-bone.length);
-            lowerback.translateZ(-bone.length);
-            lowerback.scale.set(1.2, 2, 1);
+            const lowerback = new gfx.SphereMesh(bone.length);
+            lowerback.translateY(-bone.length*2);
             lowerback.rotateX(-15);
+            lowerback.scale.set(1.2, 2, 1);
             lowerback.material.setColor(new gfx.Color(1, 0, 0));
-            this.skeleton.add(lowerback);
+            bone.transform.add(lowerback);
         }
         else if(bone.name == 'lhipjoint')
         {
-            const lhipjoint = new gfx.CylinderMesh(20, 0.25);
-            lhipjoint.translateY(-bone.length);
-            lhipjoint.translateX(bone.length/2);
-            lhipjoint.rotateZ(45);
-            lhipjoint.scale.set(0.02, 0.75, 0.02);
+            const lhipjoint = new gfx.CylinderMesh(20, bone.length);
+            lhipjoint.scale.set(0.02, 1, 0.02);
             lhipjoint.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(lhipjoint);
+            bone.transform.add(lhipjoint);
         }
         else if(bone.name == 'lfemur')
         {
-            const lfemur = new gfx.CylinderMesh(20, 0.25);
-            lfemur.translateY(-bone.length/1.3);
-            lfemur.translateX(bone.length/3);
-            lfemur.scale.set(0.02, 1.5, 0.02);
+            const lfemur = new gfx.CylinderMesh(20, bone.length);
+            lfemur.translateY(bone.length/2);
+            lfemur.rotateY(15);
+            lfemur.rotateZ(3);
+            lfemur.scale.set(0.02, 1, 0.02);
             lfemur.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(lfemur);
+            bone.transform.add(lfemur);
         }
         else if(bone.name == 'ltibia')
         {
-            const ltibia = new gfx.CylinderMesh(20, 0.25);
-            ltibia.translateY(-bone.length/0.6);
-            ltibia.translateX(bone.length/3);
-            ltibia.scale.set(0.02, 1.5, 0.02);
+            const ltibia = new gfx.CylinderMesh(20, bone.length);
+            ltibia.scale.set(0.02, 1, 0.02);
+            ltibia.translateY(bone.length/1.5);
+            ltibia.rotateZ(10.1);
             ltibia.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(ltibia);
+            bone.transform.add(ltibia);
         }
         else if(bone.name == 'lfoot')
         {
-            //
+            const lfoot = new gfx.CylinderMesh(20, bone.length);
+            lfoot.scale.set(0.02, 1, 0.02);
+            lfoot.translateY(bone.length);
+            lfoot.translateX(bone.length);
+            lfoot.translateZ(-bone.length);
+            lfoot.rotateX(15);
+            lfoot.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(lfoot);
         }
         else if(bone.name == 'ltoes')
         {
-            //
+            const ltoes = new gfx.CylinderMesh(20, bone.length);
+            ltoes.scale.set(0.02, 1, 0.02);
+            ltoes.translateY(bone.length);
+            ltoes.translateX(bone.length);
+            ltoes.translateZ(-bone.length);
+            ltoes.rotateX(90);
+            ltoes.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(ltoes);
         }
         else if(bone.name == 'rhipjoint')
         {
-            const rhipjoint = new gfx.CylinderMesh(20, 0.25);
-            rhipjoint.translateY(-bone.length);
-            rhipjoint.translateX(-bone.length/2);
-            rhipjoint.rotateZ(-45);
-            rhipjoint.scale.set(0.02, 0.75, 0.02);
+            const rhipjoint = new gfx.CylinderMesh(20, bone.length);
+            rhipjoint.scale.set(0.02, 1, 0.02);
             rhipjoint.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(rhipjoint);
+            bone.transform.add(rhipjoint);
         }
         else if(bone.name == 'rfemur')
         {
-            const rfemur = new gfx.CylinderMesh(20, 0.25);
-            rfemur.translateY(-bone.length/1.3);
-            rfemur.translateX(-bone.length/3);
-            rfemur.scale.set(0.02, 1.5, 0.02);
+            const rfemur = new gfx.CylinderMesh(20, bone.length);
+            rfemur.translateY(bone.length/2);
+            rfemur.rotateZ(3);
+            rfemur.scale.set(0.02, 1, 0.02);
             rfemur.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(rfemur);
+            bone.transform.add(rfemur);
         }
         else if(bone.name == 'rtibia')
         {
-            const rtibia = new gfx.CylinderMesh(20, 0.25);
-            rtibia.translateY(-bone.length/0.6);
-            rtibia.translateX(-bone.length/3);
-            rtibia.scale.set(0.02, 1.5, 0.02);
+            const rtibia = new gfx.CylinderMesh(20, bone.length);
+            rtibia.scale.set(0.02, 1, 0.02);
+            rtibia.translateY(bone.length/1.5);
+            rtibia.rotateZ(-10.1);
             rtibia.material.setColor(new gfx.Color(0, 0, 0));
-            this.skeleton.add(rtibia);
+            bone.transform.add(rtibia);
         }
         else if(bone.name == 'rfoot')
         {
-            //
+            const rfoot = new gfx.CylinderMesh(20, bone.length);
+            rfoot.scale.set(0.02, 1, 0.02);
+            rfoot.translateY(bone.length);
+            rfoot.translateX(-bone.length*1.5);
+            rfoot.translateZ(-bone.length);
+            rfoot.rotateX(15);
+            rfoot.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(rfoot);
         }
         else if(bone.name == 'rtoes')
         {
-            //
+            const rtoes = new gfx.CylinderMesh(20, bone.length);
+            rtoes.scale.set(0.02, 1, 0.02);
+            rtoes.translateY(bone.length);
+            rtoes.translateX(-bone.length);
+            rtoes.translateZ(-bone.length);
+            rtoes.rotateX(90);
+            rtoes.material.setColor(new gfx.Color(0, 0, 0));
+            bone.transform.add(rtoes);
         }
 
         // TO DO (PART 1): Recursively call this function for each of the bone's children
